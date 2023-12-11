@@ -40,7 +40,6 @@ RUN chmod +x bin/* && \
 
 # Install and run Yarn and cssbundling-rails
 RUN apt-get update && apt-get install -y yarn
-RUN yarn install
 RUN bundle update cssbundling-rails
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
