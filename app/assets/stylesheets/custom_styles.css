@@ -1,0 +1,14 @@
+/*File for customising bootstrap*/
+
+.todo_style {
+    color: red;
+}
+
+.back_button {
+    transition-duration: 0.2s;
+  }
+
+      .back_button:hover {
+    background-color: darkslategrey;
+    color: black;
+  }
