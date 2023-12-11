@@ -23,7 +23,6 @@ RUN apt-get update -qq && \
 
 # Install and run Yarn and cssbundling-rails
 RUN apt-get update && apt-get install -y yarn
-RUN apt-get update && apt-get install -y cssbundling-rails
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./

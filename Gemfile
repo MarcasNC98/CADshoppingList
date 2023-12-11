@@ -26,7 +26,7 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-# Enabless cssbundling-rails
+# Enables cssbundling-rails
 gem "cssbundling-rails"
 
 # Use Redis adapter to run Action Cable in production
