@@ -21,6 +21,10 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libvips pkg-config
 
+# Install and run Yarn and cssbundling-rails
+RUN apt-get update && apt-get install -y yarn
+RUN apt-get update && apt-get install -y cssbundling-rails
+
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
@@ -37,10 +41,6 @@ RUN bundle exec bootsnap precompile app/ lib/
 RUN chmod +x bin/* && \
     sed -i "s/\r$//g" bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
-
-# Install and run Yarn and cssbundling-rails
-RUN apt-get update && apt-get install -y yarn
-RUN bundle update cssbundling-rails
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
