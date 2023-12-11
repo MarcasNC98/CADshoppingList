@@ -38,9 +38,8 @@ RUN chmod +x bin/* && \
     sed -i "s/\r$//g" bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
 
-# Install and run Yarn
+# Install and run Yarn and cssbundling-rails
 RUN apt-get update && apt-get install -y yarn
-RUN npm install -g npm
 RUN yarn install
 RUN bundle update cssbundling-rails
 
