@@ -21,9 +21,9 @@ orbs:
 
 jobs:
   build:
-    working_directory: ~/shoppingListApplication
+    working_directory: ~/CADshoppingList
     docker:
-      - image: cimg/ruby:3.1.0
+      - image: cimg/ruby:3.2.2
     steps:
       - checkout
       - setup_remote_docker
@@ -41,8 +41,8 @@ jobs:
           command: docker run -p 3000:3000 -d $IMAGE_NAME
   deploy:
     docker:
-      - image: cimg/ruby:3.1.0
+      - image: cimg/ruby:3.2.2
     steps:
       - run:
           name: deploy-application
-          command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "export CONTAINER_NAME=\"$CONTAINER_NAME\"; export IMAGE_NAME=\"$IMAGE_NAME\"; rm -rf /; git clone ; source /deploy.sh"
+          command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "export CONTAINER_NAME=\"$CONTAINER_NAME\"; export IMAGE_NAME=\"$IMAGE_NAME\"; rm -rf CADshoppingList/; git clone git@github.com:MarcasNC98/CADshoppingList.git; source CADshoppingList/deploy.sh"
