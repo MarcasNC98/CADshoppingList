@@ -18,4 +18,4 @@ then
   sudo docker rm $CONTAINER_NAME
 fi
 
-sudo docker run -p 3000:3000 -d --name $CONTAINER_NAME $IMAGE_NAME
+sudo docker run -p 3000:3000 -d --name $CONTAINER_NAME $IMAGE_NAME 
