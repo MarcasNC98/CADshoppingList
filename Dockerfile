@@ -21,8 +21,8 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libvips pkg-config
 
-# Install and run Yarn and cssbundling-rails
-RUN apt-get update && apt-get install -y yarn
+# Install Yarn
+RUN yarn install
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
