@@ -21,15 +21,13 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libvips pkg-config
 
-# Install Yarn
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-    && apt-get update \
-    && apt-get install -y yarn
+# Install and run Yarn and cssbundling-rails
+RUN apt-get update && apt-get install -y yarn
 
 # cssbundling-rails relies on javascript dependencies, installing them
 COPY package.json yarn.lock ./
 RUN yarn install --check-files
+
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
