@@ -13,7 +13,6 @@ ENV RAILS_ENV="production" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development"
 
-
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
@@ -21,13 +20,10 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libvips pkg-config
 
-# Install and run Yarn and cssbundling-rails
-RUN apt-get update && apt-get install -y yarn
-
-# cssbundling-rails relies on javascript dependencies, installing them
-COPY package.json yarn.lock ./
-RUN yarn install --check-files
-
+# Installs nodejs and yarn, which cssbundling-rails needs in order to be installed
+RUN apt-get install --no-install-recommends -y nodejs npm && \
+    npm install -g yarn && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
