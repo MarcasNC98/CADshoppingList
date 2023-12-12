@@ -23,6 +23,7 @@ RUN apt-get update -qq && \
 # Installs nodejs and yarn, which cssbundling-rails needs in order to be installed
 RUN apt-get install --no-install-recommends -y nodejs npm && \
     npm install -g yarn && \
+    # Decrease image size by removing cached info about packages - https://www.cyberciti.biz/faq/can-i-delete-var-cache-apt-archives-for-ubuntu-debian-linux/ 
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install application gems
