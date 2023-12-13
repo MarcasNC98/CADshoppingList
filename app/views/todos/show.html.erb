@@ -8,12 +8,14 @@
         <div class="card mb-3 bg-secondary text-light">
           <div class="card-body">
             <%= render @todo %>
+            <!--Shows an image in the todo if one is attached-->
             <%= image_tag @todo.image, class: "img-fluid" if @todo.image.attached? %>
           </div>
           <div class="card-footer text-center">
             <%= link_to "Edit this item", edit_todo_path(@todo), class: "btn btn-success" %> |
             <%= link_to "Back to items", todos_path, class: "btn btn-primary" %>
-            <%= button_to "Delete this item", @todo, method: :delete, class: "btn btn-danger" %>
+            <!--Delete button displays a confirmation message in case user accidentally clicks it-->
+            <%= button_to "Delete this item", @todo, method: :delete, data: { confirm: "Are you sure you want to delete this item?" }, class: "btn btn-danger" %>
           </div>
         </div>
       </div>
