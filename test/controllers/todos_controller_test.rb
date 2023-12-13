@@ -29,7 +29,7 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
     image_path = Rails.root.join('test', 'fixtures', 'files', 'sample_image.jpg')
 
     assert_difference("Todo.count") do
-      # fixture_file_upload simulates uploading an image to a todo
+      # fixture_file_upload simulates uploading an image to a todo https://edgeguides.rubyonrails.org/active_storage_overview.html#testing 
       post todos_url, params: { todo: { item: @todo.item, purchased: @todo.purchased, image: fixture_file_upload(image_path, 'image/jpeg') } }
     end
 
