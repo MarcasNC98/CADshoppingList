@@ -12,5 +12,5 @@ class Todo < ApplicationRecord
     has_one_attached :image
 
     # Validation that prevents an item from being added if the same item is already on the list or if the field is left blank
-    validates :item, presence: true, uniqueness: { message: "Item is already on the list" }
+    validates :item, presence: true, uniqueness: { message: " is already on the list" }
 end
